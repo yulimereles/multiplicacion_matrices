@@ -1,18 +1,8 @@
-const http = require('http');
-const fs = require('fs');
+import express from 'express';
+const app = express();
+const port = 3000;
+app.use(express.static('public'));
 
-const server = http.createServer((req, res) => {
-    fs.readFile('index.html', 'utf8', (err, data) => {
-        if (err) {
-            res.writeHead(404);
-            res.end('File not found!');
-        } else {
-            res.writeHead(200, {'Content-Type': 'text/html'});
-            res.end(data);
-        }
-    });
-});
-
-server.listen(3000, () => {
-    console.log('Server running on port 3000');
+app.listen(port, ()=>{
+    console.log(`Servidor corriendo en http://localhost:${port}`);
 });
